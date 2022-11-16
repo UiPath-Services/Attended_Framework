@@ -1,11 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DisplayForm" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uia="clr-namespace:UiPath.IPC.Activities;assembly=UiPath.IPC.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DisplayForm" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uia="clr-namespace:UiPath.IPC.Activities;assembly=UiPath.IPC.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="io_dict_Config" Type="InOutArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="io_Config" Type="InOutArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,2150</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,2396</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DisplayForm_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="88">
@@ -58,7 +58,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="80">
+    <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -99,12 +99,13 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Text.Json</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
-    </scg:List>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+    </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This workflow displays the User Inputs Form. &#xA;&#xA;The form has all its components inside a single Container component. &#xA;We pass our Config dictionary (via an object) to the Container component so that the form can be populated with the Config dictionary values and vice versa.&#xA;&#xA;Based on the button pressed in the form, the automation will execute the process associated with that button and either 1) return execution to the form (Click button) or 2) proceed to the Results Form state (Submit button)." DisplayName="DisplayForm" sap:VirtualizedContainerService.HintSize="619,2085" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This workflow displays the User Inputs Form. &#xA;&#xA;The form has all its components inside a single Container component. &#xA;We pass our Config dictionary (via an object) to the Container component so that the form can be populated with the Config dictionary values and vice versa.&#xA;&#xA;Based on the button pressed in the form, the automation will execute the process associated with that button and either 1) return execution to the form (Click button) or 2) proceed to the Results Form state (Submit button)." DisplayName="DisplayForm" sap:VirtualizedContainerService.HintSize="658.4,2331.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="str_selectedButton" />
-      <Variable x:TypeArguments="x:Object" Name="obj_container" />
+      <Variable x:TypeArguments="x:String" Name="selectedButton" />
+      <Variable x:TypeArguments="x:Object" Name="containerObj" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -112,12 +113,12 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap2010:Annotation.AnnotationText="Pass config dictionary into object variable to pass in/out of form Container" sap:VirtualizedContainerService.HintSize="577,102" sap2010:WorkflowViewState.IdRef="Assign_12">
+    <Assign sap2010:Annotation.AnnotationText="Pass config dictionary into object variable to pass in/out of form Container" DisplayName="Assign Object Variable" sap:VirtualizedContainerService.HintSize="596,113.6" sap2010:WorkflowViewState.IdRef="Assign_12">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:Object">[obj_container]</OutArgument>
+        <OutArgument x:TypeArguments="x:Object">[containerObj]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:Object">[io_dict_Config]</InArgument>
+        <InArgument x:TypeArguments="x:Object">[io_Config]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -125,36 +126,37 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormFieldsOutputData="{x:Null}" IconPath="{x:Null}" LocalCSSFilePath="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" sap2010:Annotation.AnnotationText="If your automation has outputs, set the output folderpath to the field key ouptutFolderPath. This will be used as the folderpath to open for the &quot;View Output&quot; button in the Results Form." CreateFormId="b774a24c-432c-42e9-a62a-90d64cfef72b" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="True" DisplayName="Create Form" FormHeight="480" FormSchema="%[{&quot;tag&quot;:&quot;h2&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;{{data.logF_BusinessProcessName}}&quot;,&quot;key&quot;:&quot;logF_BusinessProcessName&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;{{data.automationDescription}}&quot;,&quot;key&quot;:&quot;automationDescription&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;Container&quot;,&quot;key&quot;:&quot;container&quot;,&quot;type&quot;:&quot;container&quot;,&quot;input&quot;:true,&quot;tableView&quot;:false,&quot;components&quot;:[{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;left&quot;,&quot;key&quot;:&quot;table1&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:8,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;View user guide&quot;,&quot;action&quot;:&quot;custom&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;viewUserGuide&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;showUpdateData&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;,&quot;allowMultipleClicksWhileDoBlock&quot;:false,&quot;hideOnChildrenHidden&quot;:false}]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]}]]},{&quot;label&quot;:&quot;Select output folder&quot;,&quot;customClass&quot;:&quot;folderPath&quot;,&quot;showAllFileTypes&quot;:true,&quot;validate&quot;:{&quot;required&quot;:true},&quot;key&quot;:&quot;outputFolderPath&quot;,&quot;input&quot;:true,&quot;suffix&quot;:&quot;Select &quot;,&quot;tableView&quot;:true,&quot;type&quot;:&quot;filePath&quot;},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;right&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:8,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Cancel&quot;,&quot;action&quot;:&quot;custom&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;cancel&quot;,&quot;properties&quot;:{&quot;closeOnSubmit&quot;:&quot;True&quot;},&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;showUpdateData&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;,&quot;hideOnChildrenHidden&quot;:false,&quot;allowMultipleClicksWhileDoBlock&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Continue&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;continue&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;type&quot;:&quot;button&quot;,&quot;input&quot;:true,&quot;hideOnChildrenHidden&quot;:false,&quot;saveOnEnter&quot;:false}]}]]}]}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100120&quot;,&quot;Name&quot;:&quot;Default&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/uipath.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/uipath.png&quot;,&quot;OverrideCssUrl&quot;:&quot;../../assets/css/themes/uipath.custom.css&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="UiPath" FormWidth="700" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="577,1194" sap2010:WorkflowViewState.IdRef="FormActivity_1" IsReadOnly="False" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" SelectedButton="[str_selectedButton]" StartAsMinimized="False">
+    <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormFieldsOutputData="{x:Null}" IconPath="{x:Null}" LocalCSSFilePath="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" sap2010:Annotation.AnnotationText="If your automation has outputs, set the output folderpath to the field key ouptutFolderPath. This will be used as the folderpath to open for the &quot;View Output&quot; button in the Results Form." CreateFormId="b774a24c-432c-42e9-a62a-90d64cfef72b" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="True" DisplayName="Create Form - Input Form" FormHeight="480" FormSchema="%[{&quot;tag&quot;:&quot;h2&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;{{data.logF_BusinessProcessName}}&quot;,&quot;key&quot;:&quot;logF_BusinessProcessName&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;{{data.automationDescription}}&quot;,&quot;key&quot;:&quot;automationDescription&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;Container&quot;,&quot;key&quot;:&quot;container&quot;,&quot;type&quot;:&quot;container&quot;,&quot;input&quot;:true,&quot;tableView&quot;:false,&quot;components&quot;:[{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;left&quot;,&quot;key&quot;:&quot;table1&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:8,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;View user guide&quot;,&quot;action&quot;:&quot;custom&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;viewUserGuide&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;showUpdateData&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;,&quot;allowMultipleClicksWhileDoBlock&quot;:false,&quot;hideOnChildrenHidden&quot;:false}]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]}]]},{&quot;label&quot;:&quot;Select output folder&quot;,&quot;customClass&quot;:&quot;folderPath&quot;,&quot;showAllFileTypes&quot;:true,&quot;validate&quot;:{&quot;required&quot;:true},&quot;key&quot;:&quot;outputFolderPath&quot;,&quot;input&quot;:true,&quot;suffix&quot;:&quot;Select &quot;,&quot;tableView&quot;:true,&quot;type&quot;:&quot;filePath&quot;},{&quot;label&quot;:&quot;Table&quot;,&quot;cellAlignment&quot;:&quot;right&quot;,&quot;key&quot;:&quot;table&quot;,&quot;type&quot;:&quot;table&quot;,&quot;numRows&quot;:1,&quot;numCols&quot;:8,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;rows&quot;:[[{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Cancel&quot;,&quot;action&quot;:&quot;custom&quot;,&quot;theme&quot;:&quot;secondary&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;cancel&quot;,&quot;properties&quot;:{&quot;closeOnSubmit&quot;:&quot;True&quot;},&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;showUpdateData&quot;:false,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;,&quot;hideOnChildrenHidden&quot;:false,&quot;allowMultipleClicksWhileDoBlock&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Continue&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;continue&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;isResetData&quot;:false,&quot;type&quot;:&quot;button&quot;,&quot;input&quot;:true,&quot;hideOnChildrenHidden&quot;:false,&quot;saveOnEnter&quot;:false}]}]]}]}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100120&quot;,&quot;Name&quot;:&quot;Default&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/uipath.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/uipath.png&quot;,&quot;OverrideCssUrl&quot;:&quot;../../assets/css/themes/uipath.custom.css&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="UiPath" FormWidth="700" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="596,1340.8" sap2010:WorkflowViewState.IdRef="FormActivity_1" IsReadOnly="False" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" SelectedButton="[selectedButton]" StartAsMinimized="False">
       <ufa:FormActivity.Body>
         <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
-          <Sequence sap:VirtualizedContainerService.HintSize="539,1026" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <Sequence DisplayName="Form Action" sap:VirtualizedContainerService.HintSize="559.2,1160.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence sap2010:Annotation.AnnotationText="Once the user completes the form and presses a button, update the Config dictionary with new information from the Container. We have to append info to the Config dictionary instead of overwriting it because if you hid previous components, those field keys may be erased from the Config." DisplayName="Update Config with new info from Form" sap:VirtualizedContainerService.HintSize="497,447" sap2010:WorkflowViewState.IdRef="Sequence_26">
+            <Sequence sap2010:Annotation.AnnotationText="Once the user completes the form and presses a button, update the Config dictionary with new information from the Container. We have to append info to the Config dictionary instead of overwriting it because if you hid previous components, those field keys may be erased from the Config." DisplayName="Update Config with new info from Form" sap:VirtualizedContainerService.HintSize="496.8,512.8" sap2010:WorkflowViewState.IdRef="Sequence_26">
               <Sequence.Variables>
-                <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="dict_objContainer" />
+                <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="objContainer" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:DeserializeJson x:TypeArguments="scg:Dictionary(x:String, x:Object)" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[dict_objContainer]" JsonString="[jsonconvert.SerializeObject(obj_container)]" />
-              <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="434,184" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[dict_objContainer]">
+              <ui:DeserializeJson x:TypeArguments="scg:Dictionary(x:String, x:Object)" DisplayName="Deserialize JSON - containerObj" sap:VirtualizedContainerService.HintSize="433.6,69.6" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[objContainer]" JsonString="[jsonconvert.SerializeObject(containerObj)]" />
+              <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" CurrentIndex="{x:Null}" DisplayName="For Each Pair" sap:VirtualizedContainerService.HintSize="433.6,204" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[objContainer]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:Object)">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" Name="pair" />
                     </ActivityAction.Argument>
-                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                    <Assign DisplayName="Assign Pair Value" sap:VirtualizedContainerService.HintSize="262.4,69.6" sap2010:WorkflowViewState.IdRef="Assign_16">
                       <Assign.To>
-                        <OutArgument x:TypeArguments="x:Object">[io_dict_Config(pair.Key)]</OutArgument>
+                        <OutArgument x:TypeArguments="x:Object">[io_Config(pair.Key)]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
                         <InArgument x:TypeArguments="x:Object">[pair.Value]</InArgument>
@@ -164,61 +166,65 @@
                 </ui:ForEach.Body>
               </ui:ForEach>
             </Sequence>
-            <Assign DisplayName="Assign - Add button pressed to Config" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+            <Assign DisplayName="Assign - Add button pressed to Config" sap:VirtualizedContainerService.HintSize="496.8,69.6" sap2010:WorkflowViewState.IdRef="Assign_14">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:Object">[io_dict_Config("selectedButton")]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object">[io_Config("selectedButton")]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Object">[str_selectedButton]</InArgument>
+                <InArgument x:TypeArguments="x:Object">[selectedButton]</InArgument>
               </Assign.Value>
             </Assign>
-            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[str_selectedButton]" sap:VirtualizedContainerService.HintSize="497,160" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+            <Switch x:TypeArguments="x:String" DisplayName="Switch - Selected Button" Expression="[selectedButton]" sap:VirtualizedContainerService.HintSize="496.8,173.6" sap2010:WorkflowViewState.IdRef="Switch`1_1">
               <Switch.Default>
-                <If Condition="[Convert.ToBoolean(io_dict_Config(&quot;pip&quot;))]" sap:VirtualizedContainerService.HintSize="713,270" sap2010:WorkflowViewState.IdRef="If_4">
+                <If Condition="[Convert.ToBoolean(io_Config(&quot;pip&quot;))]" DisplayName="If PiP Mode" sap:VirtualizedContainerService.HintSize="711.2,292" sap2010:WorkflowViewState.IdRef="If_4">
                   <If.Then>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Switch workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" TargetSession="Child" UnSafe="True" WorkflowFileName="FormButtonAction.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Switch workflow - PiP" sap:VirtualizedContainerService.HintSize="333.6,123.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" TargetSession="Child" UnSafe="True" WorkflowFileName="FormButtonAction.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_dict_Config">[io_dict_Config]</InOutArgument>
+                        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">
+                          <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="io_Config" />
+                        </InOutArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </If.Then>
                   <If.Else>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Switch workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="FormButtonAction.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Switch workflow - None PiP" sap:VirtualizedContainerService.HintSize="333.6,123.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="FormButtonAction.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_dict_Config">[io_dict_Config]</InOutArgument>
+                        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">
+                          <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="io_Config" />
+                        </InOutArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </If.Else>
                 </If>
               </Switch.Default>
-              <Sequence x:Key="cancel" DisplayName="Close form if selected button is Cancel" sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_25">
+              <Sequence x:Key="cancel" DisplayName="Close form if selected button is Cancel" sap:VirtualizedContainerService.HintSize="400,333.6" sap2010:WorkflowViewState.IdRef="Sequence_25">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign DisplayName="Set cancel flag as true" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                <Assign DisplayName="Set cancel flag as true" sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_15">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Object">[io_dict_Config("formCanceled")]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Object">[io_Config("formCanceled")]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
                     <InArgument x:TypeArguments="x:Object">[True]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[&quot;User pressed Cancel button&quot;]" />
+                <ui:LogMessage DisplayName="Log Message - Cancel Button" sap:VirtualizedContainerService.HintSize="337.6,102.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[&quot;User pressed Cancel button&quot;]" />
               </Sequence>
-              <TryCatch x:Key="viewUserGuide" sap2010:Annotation.AnnotationText="Try to open user guide link in default web browser, otherwise send status window message to user that user guide link isn't available." sap:VirtualizedContainerService.HintSize="438,356" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch x:Key="viewUserGuide" sap2010:Annotation.AnnotationText="Try to open user guide link in default web browser, otherwise send status window message to user that user guide link isn't available." sap:VirtualizedContainerService.HintSize="436.8,382.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <TryCatch.Try>
-                  <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process" FileName="[io_dict_Config(&quot;userGuideUrl&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
+                  <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process - Get User Guide URL" FileName="[io_Config(&quot;userGuideUrl&quot;).ToString]" sap:VirtualizedContainerService.HintSize="333.6,97.6" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
                 </TryCatch.Try>
                 <TryCatch.Catches>
-                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -229,18 +235,18 @@
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                       </ActivityAction.Argument>
-                      <uia:BroadcastMessage ContinueOnError="{x:Null}" Channel="[io_dict_Config(&quot;statusWindowChannel&quot;).ToString]" DisplayName="Broadcast Message" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="BroadcastMessage_3" Message="[io_dict_Config(&quot;userGuideUrl&quot;).ToString]" PollingInterval="10" Timeout="0" />
+                      <uia:BroadcastMessage ContinueOnError="{x:Null}" Channel="[io_Config(&quot;statusWindowChannel&quot;).ToString]" DisplayName="Broadcast Message - User Guide URL" sap:VirtualizedContainerService.HintSize="333.6,144" sap2010:WorkflowViewState.IdRef="BroadcastMessage_3" Message="[io_Config(&quot;userGuideUrl&quot;).ToString]" PollingInterval="10" Timeout="0" />
                     </ActivityAction>
                   </Catch>
                 </TryCatch.Catches>
               </TryCatch>
             </Switch>
-            <Assign sap2010:Annotation.AnnotationText="After execution control is returned from the button's process, update the Container component with information from the Config dictionary so the form can be updated with new information." sap:VirtualizedContainerService.HintSize="497,147" sap2010:WorkflowViewState.IdRef="Assign_13">
+            <Assign sap2010:Annotation.AnnotationText="After execution control is returned from the button's process, update the Container component with information from the Config dictionary so the form can be updated with new information." DisplayName="Assign Container Object" sap:VirtualizedContainerService.HintSize="496.8,161.6" sap2010:WorkflowViewState.IdRef="Assign_13">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:Object">[obj_container]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object">[containerObj]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Object">[io_dict_Config]</InArgument>
+                <InArgument x:TypeArguments="x:Object">[io_Config]</InArgument>
               </Assign.Value>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -257,9 +263,9 @@
         </ActivityAction>
       </ufa:FormActivity.DelayBody>
       <ufa:FormActivity.FormFieldsCollection>
-        <InOutArgument x:TypeArguments="x:Object" x:Key="container">[obj_container]</InOutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="logF_BusinessProcessName">[io_dict_Config("logF_BusinessProcessName").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="automationDescription">[io_dict_Config("automationDescription").ToString]</InArgument>
+        <InOutArgument x:TypeArguments="x:Object" x:Key="container">[containerObj]</InOutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="logF_BusinessProcessName">[io_Config("logF_BusinessProcessName").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="automationDescription">[io_Config("automationDescription").ToString]</InArgument>
       </ufa:FormActivity.FormFieldsCollection>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -267,7 +273,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ufa:FormActivity>
-    <If Condition="[str_selectedButton is Nothing]" DisplayName="If user closes Form by pressing the X button" sap:VirtualizedContainerService.HintSize="577,470" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[selectedButton is Nothing]" DisplayName="If user closes Form by pressing the X button" sap:VirtualizedContainerService.HintSize="596,533.6" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -275,16 +281,16 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Set cancel flag" sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_24">
+        <Sequence DisplayName="Set cancel flag" sap:VirtualizedContainerService.HintSize="400,335.2" sap2010:WorkflowViewState.IdRef="Sequence_24">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[&quot;User closed Form by pressing 'X'&quot;]" />
-          <Assign DisplayName="Set cancel flag as true" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <ui:LogMessage DisplayName="Log Message - Closed By X" sap:VirtualizedContainerService.HintSize="337.6,102.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[&quot;User closed Form by pressing 'X'&quot;]" />
+          <Assign DisplayName="Set cancel flag as true - X Clicked" sap:VirtualizedContainerService.HintSize="337.6,69.6" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
-              <OutArgument x:TypeArguments="x:Object">[io_dict_Config("formCanceled")]</OutArgument>
+              <OutArgument x:TypeArguments="x:Object">[io_Config("formCanceled")]</OutArgument>
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="x:Object">[True]</InArgument>

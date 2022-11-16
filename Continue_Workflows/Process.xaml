@@ -1,11 +1,11 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uia="clr-namespace:UiPath.IPC.Activities;assembly=UiPath.IPC.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="io_dict_Config" Type="InOutArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="io_Config" Type="InOutArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,1249</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1188,1284</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -23,6 +23,8 @@
       <x:String>UiPath.IPC.Activities</x:String>
       <x:String>UiPath.UIAutomationNext.Enums</x:String>
       <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -66,19 +68,22 @@
       <AssemblyReference>NPOI</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This workflow contains the logic of the button's process." DisplayName="Process" sap:VirtualizedContainerService.HintSize="376,1184" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap2010:Annotation.AnnotationText="This workflow contains the logic of the button's process." DisplayName="Process" sap:VirtualizedContainerService.HintSize="375.2,1219.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Process started&quot;]" />
-    <Assign sap2010:Annotation.AnnotationText="Use resultFormMessage to build the message that will appear in the Result Form after a successful transaction." sap:VirtualizedContainerService.HintSize="334,117" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:LogMessage DisplayName="Log Message - Process Start" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Process started&quot;]" />
+    <Assign sap2010:Annotation.AnnotationText="Use resultFormMessage to build the message that will appear in the Result Form after a successful transaction." DisplayName="Assign resultFormMessage" sap:VirtualizedContainerService.HintSize="333.6,120" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:Object">[io_dict_Config("resultFormMessage")]</OutArgument>
+        <OutArgument x:TypeArguments="x:Object">[io_Config("resultFormMessage")]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:Object">["Your automation has finished!"]</InArgument>
@@ -89,16 +94,16 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <uia:BroadcastMessage ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Use Broadcast Message with the statusWindowChannel key to update the status window message. &#xA;&#xA;Just copy this activity and update the Message property with what you'd like the status window to say. &#xA;&#xA;Your message will remain until the next update is received or the automatione ends." Channel="[io_dict_Config(&quot;statusWindowChannel&quot;).ToString]" DisplayName="Broadcast Message" sap:VirtualizedContainerService.HintSize="334,264" sap2010:WorkflowViewState.IdRef="BroadcastMessage_1" Message="Process running" PollingInterval="10" Timeout="0">
+    <uia:BroadcastMessage ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Use Broadcast Message with the statusWindowChannel key to update the status window message. &#xA;&#xA;Just copy this activity and update the Message property with what you'd like the status window to say. &#xA;&#xA;Your message will remain until the next update is received or the automatione ends." Channel="[io_Config(&quot;statusWindowChannel&quot;).ToString]" DisplayName="Broadcast Message - Process Running" sap:VirtualizedContainerService.HintSize="333.6,274.4" sap2010:WorkflowViewState.IdRef="BroadcastMessage_1" Message="Process running" PollingInterval="10" Timeout="0">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </uia:BroadcastMessage>
-    <Assign sap2010:Annotation.AnnotationText="If your automation generates outputs to a local folder, set the folderpath to the outputFolderPath key in the Config. &#xA;&#xA;Then set showViewOutput to True and the &quot;View output&quot; button will display in the Result Form after a successful execution. Pressing the button will open the File Explorer to the folderpath specified by outputFolderPath.&#xD;&#xA;&#xD;&#xA;If you don't explicitly set showViewOutput to True during each execution, then the View output button will not show up in the success form. This is because showViewOutput is set to False in the Initialization state." sap:VirtualizedContainerService.HintSize="334,327" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap2010:Annotation.AnnotationText="If your automation generates outputs to a local folder, set the folderpath to the outputFolderPath key in the Config. &#xA;&#xA;Then set showViewOutput to True and the &quot;View output&quot; button will display in the Result Form after a successful execution. Pressing the button will open the File Explorer to the folderpath specified by outputFolderPath.&#xA;&#xA;If you don't explicitly set showViewOutput to True during each execution, then the View output button will not show up in the success form. This is because showViewOutput is set to False in the Initialization state." DisplayName="Assign showViewOutput" sap:VirtualizedContainerService.HintSize="333.6,344" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:Object">[io_dict_Config("showViewOutput")]</OutArgument>
+        <OutArgument x:TypeArguments="x:Object">[io_Config("showViewOutput")]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:Object">[True]</InArgument>
@@ -109,12 +114,12 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign sap2010:Annotation.AnnotationText="Remember to concatenate your message to the resultFormMessage" sap:VirtualizedContainerService.HintSize="334,102" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap2010:Annotation.AnnotationText="Remember to concatenate your message to the resultFormMessage" DisplayName="Update resultFormMessage" sap:VirtualizedContainerService.HintSize="333.6,104" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:Object">[io_dict_Config("resultFormMessage")]</OutArgument>
+        <OutArgument x:TypeArguments="x:Object">[io_Config("resultFormMessage")]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[io_dict_Config("resultFormMessage").ToString + vbNewLine + vbNewLine + "Great job!"]</InArgument>
+        <InArgument x:TypeArguments="x:Object">[io_Config("resultFormMessage").ToString + vbNewLine + vbNewLine + "Great job!"]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
