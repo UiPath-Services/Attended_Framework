@@ -4,16 +4,16 @@
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Form.Activities": "[1.9.6]",
-    "UiPath.IPC.Activities": "[1.1.0]",
-    "UiPath.System.Activities": "[22.4.1]",
-    "UiPath.UIAutomation.Activities": "[22.4.6]",
-    "UiPath.WebAPI.Activities": "[1.11.1]"
+    "UiPath.IPC.Activities": "[1.2.0]",
+    "UiPath.System.Activities": "[22.10.4]",
+    "UiPath.UIAutomation.Activities": "[22.10.4]",
+    "UiPath.WebAPI.Activities": "[1.13.3]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "21.8.0.0",
-  "projectVersion": "2.0.3",
+  "projectVersion": "2.1.0",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -28,7 +28,8 @@
     "executionType": "Workflow",
     "readyForPiP": false,
     "startsInPiP": false,
-    "mustRestoreAllDependencies": true
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
   },
   "designOptions": {
     "projectProfile": "Developement",
@@ -52,8 +53,11 @@
       "output": []
     }
   ],
-  "isTemplate": false,
-  "templateProjectData": {},
+  "isTemplate": true,
+  "templateProjectData": {
+    "defaultProjectDescription": "This template provides a rich user experience for attended automations.",
+    "defaultProjectName": "Attended Framework"
+  },
   "publishData": {},
-  "targetFramework": "Legacy"
+  "targetFramework": "Windows"
 }
